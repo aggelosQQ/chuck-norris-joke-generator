@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[JavaScript] Chuck Norris Jokes Generator</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <noscript>
+        This page required Javascript to be enabled in order to function properly!
+    </noscript>
+
+    
+    <div class="box">
+        <div class="box-inner">
+            <h3>This is a great title!</h3>
+            <p id="jokes"></p>
+            <button id="newJoke" onClick="newJoke()">Generate New Joke</button>
+        </div>
+    </div>
+
+    <script>
+        let API_URL = "https://api.icndb.com/jokes/random";
+        let jokeClass = document.getElementById("jokes");
+        function newJoke() {
+        fetch(API_URL)
+        .then(res => res.json())
+        .then(function(data) {
+            let joke = data.value.joke;
+            jokeClass.innerHTML = `${joke}`;
+        });
+        };
+        newJoke();
+    </script>
+</body>
+</html>
